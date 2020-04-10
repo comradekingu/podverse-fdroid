@@ -77,7 +77,7 @@ export class PlayerScreen extends React.Component<Props, State> {
               <NavShareIcon handlePress={_showShareActionSheet} />
             </RNView>
           )}
-          <NavQueueIcon navigation={navigation} />
+          <NavQueueIcon navigation={navigation} showBackButton={true} />
         </RNView>
       )
     } as NavigationScreenOptions

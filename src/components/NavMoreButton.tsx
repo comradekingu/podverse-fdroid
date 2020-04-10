@@ -5,14 +5,13 @@ import { Icon, NavItemWrapper } from './'
 
 type Props = {
   navigation: any
-  showBackButton?: boolean
 }
 
-export const NavQueueIcon = (props: Props) => {
-  const { navigation, showBackButton } = props
+export const NavMoreButton = (props: Props) => {
+  const { navigation } = props
 
   const handlePress = () => {
-    navigation.navigate({ routeName: PV.RouteNames.QueueScreen, params: { showBackButton } })
+    navigation.navigate(PV.RouteNames.MoreScreen)
   }
 
   return (
