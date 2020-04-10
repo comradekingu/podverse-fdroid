@@ -17,11 +17,11 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "tslint",
+      "tslint --fix",
       "git add"
     ],
     "src/**/*.{ts,tsx}": [
-      "tslint",
+      "tslint --fix",
       "git add"
     ]
   },
