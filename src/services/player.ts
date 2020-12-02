@@ -297,6 +297,7 @@ export const playNextFromQueue = async () => {
     if (item) {
       await addOrUpdateHistoryItem(item)
       await removeQueueItem(item)
+      return item
     }
   }
 }

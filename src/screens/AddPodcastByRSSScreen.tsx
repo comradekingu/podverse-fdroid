@@ -15,6 +15,7 @@ import { translate } from '../lib/i18n'
 import { testProps } from '../lib/utility'
 import { PV } from '../resources'
 import { getAddByRSSPodcastLocally } from '../services/parser'
+import { trackPageView } from '../services/tracking'
 import { addAddByRSSPodcast } from '../state/actions/parser'
 import { core } from '../styles'
 
@@ -51,11 +52,6 @@ export class AddPodcastByRSSScreen extends React.Component<Props, State> {
     this.props.navigation.setParams({
       _handleSavePodcastByRSSURL: this._handleSavePodcastByRSSURL
     })
-    const feedUrl = navigation.getParam('podverse-param')
-
-    if (feedUrl) {
-      this.setState({ url: feedUrl })
-    }
   }
 
   _navToRequestPodcastForm = async () => {

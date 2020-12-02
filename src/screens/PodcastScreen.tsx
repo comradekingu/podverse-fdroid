@@ -31,19 +31,13 @@ import { getDownloadedEpisodes, removeDownloadedPodcast } from '../lib/downloade
 import { downloadEpisode } from '../lib/downloader'
 import { translate } from '../lib/i18n'
 import { alertIfNoNetworkConnection, hasValidNetworkConnection } from '../lib/network'
-import {
-  decodeHTMLString,
-  isOdd,
-  readableDate,
-  removeHTMLFromString,
-  safelyUnwrapNestedVariable,
-  testProps
-} from '../lib/utility'
+import { decodeHTMLString, isOdd, removeHTMLFromString, safelyUnwrapNestedVariable, testProps } from '../lib/utility'
 import { PV } from '../resources'
 import { getEpisodes } from '../services/episode'
 import { getMediaRefs } from '../services/mediaRef'
 import { getAddByRSSPodcastLocally } from '../services/parser'
 import { getPodcast } from '../services/podcast'
+import { trackPageView } from '../services/tracking'
 import * as DownloadState from '../state/actions/downloads'
 import { toggleAddByRSSPodcastFeedUrl } from '../state/actions/parser'
 import { toggleSubscribeToPodcast } from '../state/actions/podcast'
@@ -168,6 +162,11 @@ export class PodcastScreen extends React.Component<Props, State> {
       },
       () => {
         this._initializePageData()
+
+        const pageTitle = podcast
+          ? translate('Podcasts Screen - ') + podcast.title
+          : translate('PodcastsScreen - ') + translate('no info available')
+        trackPageView('/podcast/' + podcastId, pageTitle)
       }
     )
   }

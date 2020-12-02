@@ -30,6 +30,7 @@ import {
   updateUserPlaybackPosition
 } from '../services/player'
 import { getPodcast, getPodcasts } from '../services/podcast'
+import { trackPageView } from '../services/tracking'
 import { getAuthUserInfo } from '../state/actions/auth'
 import { initDownloads, removeDownloadedPodcast } from '../state/actions/downloads'
 import {
@@ -304,6 +305,7 @@ export class PodcastsScreen extends React.Component<Props, State> {
     await initDownloads()
     await initializePlayerQueue()
     await initializePlaybackSpeed()
+    trackPageView('/podcasts', 'Podcasts Screen')
   }
 
   // querySortOverride is only used in _initializeScreenData, and it determines

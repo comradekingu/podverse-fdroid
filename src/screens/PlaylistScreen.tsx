@@ -96,7 +96,6 @@ export class PlaylistScreen extends React.Component<Props, State> {
   }
 
   async componentDidMount() {
-    const { playlistId } = this.state
     this._initializePageData()
   }
 

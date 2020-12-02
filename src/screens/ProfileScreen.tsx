@@ -21,10 +21,9 @@ import {
 import { downloadEpisode } from '../lib/downloader'
 import { translate } from '../lib/i18n'
 import { alertIfNoNetworkConnection, hasValidNetworkConnection } from '../lib/network'
-import { isOdd, readableDate, safelyUnwrapNestedVariable, testProps } from '../lib/utility'
+import { isOdd, safelyUnwrapNestedVariable, testProps } from '../lib/utility'
 import { PV } from '../resources'
 import { deleteMediaRef } from '../services/mediaRef'
-import { loadItemAndPlayTrack } from '../services/player'
 import { getPodcasts } from '../services/podcast'
 import {
   getLoggedInUserMediaRefs,
@@ -33,6 +32,7 @@ import {
   getUserPlaylists
 } from '../services/user'
 import { getAuthUserInfo } from '../state/actions/auth'
+import { loadItemAndPlayTrack } from '../state/actions/player'
 import { getPublicUser, toggleSubscribeToUser } from '../state/actions/user'
 import { core } from '../styles'
 
@@ -126,7 +126,6 @@ export class ProfileScreen extends React.Component<Props, State> {
   }
 
   async componentDidMount() {
-    const { userId } = this.state
     this._initializeScreenData()
   }
 
@@ -193,7 +192,7 @@ export class ProfileScreen extends React.Component<Props, State> {
           } as State
 
           try {
-            const { profileFlatListData } = await getPublicUser(userId, this.global)
+            const { profileFlatListData } = await getPublicUser(userId)
             newState.flatListData = profileFlatListData
             newState = await this._queryData(queryFrom, 1)
           } catch (error) {
